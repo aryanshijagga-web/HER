@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Important Question 👀</title>
+
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            background: linear-gradient(135deg, #ff758c, #ff7eb3);
+            font-family: 'Segoe UI', sans-serif;
+            text-align: center;
+            overflow: hidden;
+            color: white;
+        }
+
+        .container {
+            margin-top: 120px;
+        }
+
+        h1 {
+            font-size: 3rem;
+            margin-bottom: 10px;
+            animation: fadeIn 1.5s ease-in-out;
+        }
+
+        p {
+            font-size: 1.3rem;
+            margin-bottom: 30px;
+        }
+
+        .buttons {
+            position: relative;
+            height: 200px;
+        }
+
+        .btn {
+            padding: 15px 35px;
+            font-size: 1.2rem;
+            border: none;
+            border-radius: 30px;
+            cursor: pointer;
+            margin: 20px;
+            transition: 0.3s;
+        }
+
+        #yes {
+            background-color: white;
+            color: #ff4b8b;
+        }
+
+        #yes:hover {
+            transform: scale(1.15);
+        }
+
+        #no {
+            background-color: #ff4b8b;
+            color: white;
+            position: absolute;
+        }
+
+        @keyframes fadeIn {
+            from {opacity: 0;}
+            to {opacity: 1;}
+        }
+
+        .heart {
+            position: fixed;
+            font-size: 20px;
+            animation: float 4s linear infinite;
+        }
+
+        @keyframes float {
+            from {transform: translateY(100vh);}
+            to {transform: translateY(-10vh);}
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="container">
+        <h1>Okay listen… 👀</h1>
+        <p>I have something VERY important to ask you...</p>
+        <h1 style="font-size:2.5rem;">
+            Will you be my Valentine? 💖
+        </h1>
+
+        <div class="buttons">
+            <button class="btn" id="yes" onclick="sayYes()">YES 😍</button>
+            <button class="btn" id="no" onmouseover="moveButton()">No 🙃</button>
+        </div>
+    </div>
+
+    <script>
+        let noTexts = [
+            "Are you sure? 😢",
+            "Think again 👀",
+            "But I’m cute 🥺",
+            "I’ll buy you food 🍕",
+            "That hurt 😭",
+            "Last chance 😤"
+        ];
+
+        let count = 0;
+
+        function moveButton() {
+            const noBtn = document.getElementById("no");
+
+            const x = Math.random() * (window.innerWidth - 120);
+            const y = Math.random() * (window.innerHeight - 60);
+
+            noBtn.style.left = x + "px";
+            noBtn.style.top = y + "px";
+
+            if (count < noTexts.length) {
+                noBtn.innerText = noTexts[count];
+                count++;
+            }
+        }
+
+        function sayYes() {
+            document.body.innerHTML = `
+                <div style="margin-top:150px;">
+                    <h1>YOU SAID YESSS 😭❤️</h1>
+                    <p style="font-size:1.5rem;">
+                        Best decision of your life. I promise.
+                    </p>
+                    <p style="font-size:1.2rem;">
+                        Officially cutest couple alert 🚨💑
+                    </p>
+                </div>
+            `;
+            createHearts();
+        }
+
+        function createHearts() {
+            setInterval(() => {
+                const heart = document.createElement("div");
+                heart.classList.add("heart");
+                heart.innerHTML = "💖";
+                heart.style.left = Math.random() * 100 + "vw";
+                heart.style.fontSize = Math.random() * 20 + 20 + "px";
+                document.body.appendChild(heart);
+
+                setTimeout(() => {
+                    heart.remove();
+                }, 4000);
+            }, 250);
+        }
+    </script>
+
+</body>
+</html>
